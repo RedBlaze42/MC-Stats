@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Temps de jeu",
+        "id": "minecraft:play_one_minute",
+        "unit": "h",
+        "divide_by": 72000
+    },
+    {
+        "name": "Morts",
+        "id": "minecraft:deaths"
+    },
+    {
+        "name": "Animeaux \"engendrés\" :smirk:",
+        "id": "minecraft:animals_bred"
+    },
+    {
+        "name": "Mobs tués",
+        "id": "minecraft:mob_kills"
+    },
+    {
+        "name": "Joueurs tués",
+        "id": "minecraft:player_kills"
+    },
+    {
+        "name": "Cloches sonnées",
+        "id": "minecraft:bell_ring"
+    },
+    {
+        "name": "Raids gagnés",
+        "id": "minecraft:raid_win"
+    },
+    {
+        "name": "Clicks sur \"Quitter\"",
+        "id": "minecraft:leave_game"
+    },
+    {
+        "name": "Interractions avec des villageois",
+        "id": "minecraft:talked_to_villager"
+    },
+    {
+        "name": "Musiques jouées",
+        "id": "minecraft:play_record"
+    },{"name":"Temps depuis la dernière mort","id":"minecraft:time_since_death","divide_by":1200,"unit":"min"}
+]
