@@ -50,7 +50,10 @@ async def on_message(message):
                     await message.channel.send("Ce compte n'existe pas")
                     return
             elif len(args)>=2 and args[0].startswith("top"):
-                top=int(args[0].split("top")[1]) if len(args[0].split("top"))==2 else 7
+                try:
+                    top=int(args[0].split("top")[1])
+                except ValueError:
+                    top=7
                 player=await get_player_from_args(args[2:],message)
                 if player is None: return
 
