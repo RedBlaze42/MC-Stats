@@ -49,7 +49,8 @@ async def on_message(message):
                 else:
                     await message.channel.send("Ce compte n'existe pas")
                     return
-            elif len(args)>=2 and args[0]=="top":
+            elif len(args)>=2 and args[0].startswith("top"):
+                top=int(args[0].split("top")[1]) if len(args[0].split("top"))==2 else 7
                 player=await get_player_from_args(args[2:],message)
                 if player is None: return
 
@@ -61,7 +62,7 @@ async def on_message(message):
 
                 embed=discord.Embed(color=4062976,title="Stats \"{}\" de {}".format(stat_name.split(":")[1],player.name))
                 embed.set_thumbnail(url="https://minotar.net/helm/{}".format(player.name))
-                embed.description=player.format_top_stats(stat_name,top=7)
+                embed.description=player.format_top_stats(stat_name,top=top)
 
                 await message.channel.send(embed=embed)
                 
