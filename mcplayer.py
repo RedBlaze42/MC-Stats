@@ -1,5 +1,5 @@
 import requests,json
-from os.path import join
+import os
 
 def pretty_print(number):
     float_part="."+str(number).split(".")[1] if isinstance(number,float) else ""
@@ -11,7 +11,7 @@ def pretty_print(number):
     return pretty_number.strip()[::-1]+float_part
 
 def get_filename_from_uuid(path,uuid):
-    return join(path,uuid[:8]+"-"+uuid[8:8+4]+"-"+uuid[8+4:8+4+4]+"-"+uuid[8+4+4:8+4+4+4]+"-"+uuid[8+4+4+4:]+".json")
+    return os.path.join(path,uuid[:8]+"-"+uuid[8:8+4]+"-"+uuid[8+4:8+4+4]+"-"+uuid[8+4+4:8+4+4+4]+"-"+uuid[8+4+4+4:]+".json")
 
 def get_name_from_uuid(uuid):
     req=requests.get("https://sessionserver.mojang.com/session/minecraft/profile/{}".format(uuid))
@@ -26,7 +26,7 @@ def get_uuid_from_name(name):
 class Player():
 
     def __init__(self,file):
-        self.uuid=".".join(file.split("\\")[-1].split(".")[:-1])
+        self.uuid=os.path.splitext(os.path.basename(file))[0]
         self.name=get_name_from_uuid(self.uuid)
         with open(file,"r") as f:
             self.data=json.load(f)["stats"]
