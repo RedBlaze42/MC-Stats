@@ -61,7 +61,7 @@ async def on_message(message):
 
                 embed=discord.Embed(color=4062976,title="Stats \"{}\" de {}".format(stat_name.split(":")[1],player.name))
                 embed.set_thumbnail(url="https://minotar.net/helm/{}".format(player.name))
-                embed.description=player.format_top_stats(stat_name)
+                embed.description=player.format_top_stats(stat_name,top=7)
 
                 await message.channel.send(embed=embed)
                 
