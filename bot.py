@@ -1,4 +1,4 @@
-import discord,json,mcplayer
+import discord,json,mcplayer,os,glob
 
 bot=discord.Client()
 
@@ -65,7 +65,13 @@ async def on_message(message):
                 embed.description=player.format_top_stats(stat_name,top=top)
 
                 await message.channel.send(embed=embed)
-                
+            elif len(args)>0 and args[0]=="playerlist":
+                player_list=glob.glob(os.path.join(bot.config["stat_path"],"*.json"))
+                embed=discord.Embed(color=4062976,title="Liste des joueurs")
+                players=[mcplayer.Player(player_path) for player_path in player_list]
+                for player in sorted(players,key=lambda player: player.data["minecraft:custom"]["minecraft:play_one_minute"],reverse=True):
+                    embed.add_field(inline=False,name=player.name,value="Temps de jeu: {} h".format(round(player.data["minecraft:custom"]["minecraft:play_one_minute"]/72000,1)))
+                await message.channel.send(embed=embed)
             else:
                 player=await get_player_from_args(args[0:],message)
                 if player is None: return
