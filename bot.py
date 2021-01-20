@@ -41,7 +41,7 @@ async def on_message(message):
         args=message.content.split(" ")[1:]
         try:
             if len(args)>0 and args[0]=="assign":
-                uuid=mcplayer.get_uuid_from_name(args[1],message)
+                uuid=mcplayer.get_uuid_from_name(args[1])
                 if uuid is not None:
                     bot.config["accounts"][str(message.author.id)] = uuid
                     save_config()
