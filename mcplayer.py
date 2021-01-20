@@ -54,6 +54,7 @@ class Player():
 
         output=list()
         for custom_stat in custom_stats:
+            if not custom_stat["id"] in self.data["minecraft:custom"].keys(): continue
             if "divide_by" in custom_stat.keys():
                 value=round(self.data["minecraft:custom"][custom_stat["id"]]/custom_stat["divide_by"],2)
             elif "multiply_by" in custom_stat.keys():
@@ -64,7 +65,7 @@ class Player():
             unit=" "+custom_stat["unit"] if "unit" in custom_stat.keys() else ""
             output.append(custom_stat["name"]+": "+pretty_print(value)+unit)
 
-        return "Distance parcourue: {} blocs\nConteneurs ouverts: {}\nTemps de jeu moyen par sessions: {} min\n{}".format(pretty_print(round(sum([self.data["minecraft:custom"][stat] for stat in self.data["minecraft:custom"] if "one_cm" in stat])/100)),
+        return "Distance parcourue: {} blocs\nConteneurs ouverts: {}\nTemps de jeu moyen par session: {} min\n{}".format(pretty_print(round(sum([self.data["minecraft:custom"][stat] for stat in self.data["minecraft:custom"] if "one_cm" in stat])/100)),
             pretty_print(sum([self.data["minecraft:custom"][stat] for stat in self.data["minecraft:custom"] if "inspect" in stat or "open" in stat])),
             round(self.data["minecraft:custom"]["minecraft:play_one_minute"]/self.data["minecraft:custom"]["minecraft:leave_game"]/(20*60)),
             "\n".join(output))

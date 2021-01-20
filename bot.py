@@ -31,7 +31,7 @@ async def get_player_from_args(args,message):
     try:
             player=mcplayer.Player(mcplayer.get_filename_from_uuid(bot.config["stat_path"],uuid))
     except FileNotFoundError:
-            await message.channel.send("Le joueur spécifié n'existe pas")
+            await message.channel.send("Ce joueur n'a pas rejoint le serveur")
             return None
     return player
 
@@ -66,7 +66,7 @@ async def on_message(message):
                 await message.channel.send(embed=embed)
                 
             else:
-                player=await get_player_from_args(args[0],message)
+                player=await get_player_from_args(args[0:],message)
                 if player is None: return
 
                 embed=discord.Embed(color=4062976,title="Stats de {}".format(player.name))
