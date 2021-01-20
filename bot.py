@@ -37,7 +37,7 @@ async def get_player_from_args(args,message):
 
 @bot.event
 async def on_message(message):
-    if (message.channel.id==801411399103807501 or message.author.id==153201272399462400) and message.content.startswith("!mcstats"):
+    if (message.channel.id==801411399103807501 or message.author.id==153201272399462400 or isinstance(message.channel,discord.channel.DMChannel)) and message.content.startswith("!mcstats"):
         args=message.content.split(" ")[1:]
         try:
             if len(args)>0 and args[0]=="assign":
