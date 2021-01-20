@@ -60,7 +60,7 @@ async def on_message(message):
                 stat_name="minecraft:{}".format(args[1])
                 if stat_name not in player.stat_types:
                     stat_types="\n".join([stat_type.split(":")[1] for stat_type in player.stat_types if stat_type!="minecraft:custom"])
-                    await message.channel.send("Ceci n'est pas un type de stats, veuillez choisir parmis:\n```{}```".format(stat_types))
+                    await message.channel.send("Catégories de statistiques:\n```{}```".format(stat_types))
                     return
 
                 embed=discord.Embed(color=4062976,title="Stats \"{}\" de {}".format(stat_name.split(":")[1],player.name))
