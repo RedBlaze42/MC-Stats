@@ -75,6 +75,8 @@ async def on_message(message):
                 for player in sorted(players,key=lambda player: player.data["minecraft:custom"]["minecraft:play_one_minute"],reverse=True):
                     embed.add_field(inline=False,name=player.name,value="Temps de jeu: {} h".format(round(player.data["minecraft:custom"]["minecraft:play_one_minute"]/72000,1)))
                 await message.channel.send(embed=embed)
+            elif len(args)>0 and args[0]=="help":
+                await message.channel.send("`!mcstats assign PSEUDO_MC` lie votre compte discord avec votre compte minecraft\n`!mcstats PSEUDO_MC` donne un résumé des stats (PSEUDO_MC est facultatif)\n`!mcstats playerlist` donne la liste des joeuurs\n`!mcstats topX TYPE_STATS PSEUDO_MC` donne les X meilleurs stats dans chaque catégorie (pour connaïtre les catégories, tapez `!mcstats top help`)")
             else:
                 player=await get_player_from_args(args[0:],message)
                 if player is None: return
