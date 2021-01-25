@@ -15,6 +15,7 @@ load_config()
 @bot.event
 async def on_ready():
     print("Bot ready")
+    await bot.change_presence(activity=discord.Game(name="MINECRAFT"))
 
 async def get_player_from_args(args,message):
     if len(args) == 0 or args is None:
