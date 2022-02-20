@@ -73,8 +73,8 @@ async def on_message(message):
                 player_list=glob.glob(os.path.join(bot.config["stat_path"],"*.json"))
                 embed=discord.Embed(color=4062976,title="Liste des joueurs")
                 players=[mcplayer.Player(player_path) for player_path in player_list]
-                for player in sorted(players,key=lambda player: player.data["minecraft:custom"]["minecraft:play_one_minute"],reverse=True):
-                    embed.add_field(inline=False,name=player.name,value="Temps de jeu: {} h".format(round(player.data["minecraft:custom"]["minecraft:play_one_minute"]/72000,1)))
+                for player in sorted(players,key=lambda player: player.data["minecraft:custom"]["minecraft:play_time"],reverse=True):
+                    embed.add_field(inline=False,name=player.name,value="Temps de jeu: {} h".format(round(player.data["minecraft:custom"]["minecraft:play_time"]/72000,1)))
                 await message.channel.send(embed=embed)
             elif len(args)>0 and args[0]=="help":
                 await message.channel.send("`!mcstats assign PSEUDO_MC` lie votre compte discord avec votre compte minecraft\n`!mcstats PSEUDO_MC` donne un résumé des stats (PSEUDO_MC est facultatif)\n`!mcstats playerlist` donne la liste des joeuurs\n`!mcstats topX TYPE_STATS PSEUDO_MC` donne les X meilleurs stats dans chaque catégorie (pour connaïtre les catégories, tapez `!mcstats top help`)")

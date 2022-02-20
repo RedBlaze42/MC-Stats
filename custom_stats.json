@@ -1,7 +1,7 @@
 [
     {
         "name": "Temps de jeu",
-        "id": "minecraft:play_one_minute",
+        "id": "minecraft:play_time",
         "unit": "h",
         "divide_by": 72000
     },
