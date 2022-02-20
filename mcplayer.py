@@ -30,6 +30,9 @@ class Player():
         self.name=get_name_from_uuid(self.uuid)
         with open(file,"r") as f:
             self.data=json.load(f)["stats"]
+        
+        if "minecraft:play_one_minute" in self.data["minecraft:custom"]:
+            self.data["minecraft:custom"]["minecraft:play_time"] = self.data["minecraft:custom"]["minecraft:play_one_minute"]
     
         self.stat_types=list(self.data.keys())
 
