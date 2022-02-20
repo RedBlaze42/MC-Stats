@@ -50,6 +50,12 @@ class Player():
             output.append("__{}:__ {}".format(stat.split(":")[1],pretty_print(self.data[stat_type][stat])))
 
         return "\n".join(output)
+    
+    def get_opened_containers(self):
+        return sum([self.data["minecraft:custom"][stat] for stat in self.data["minecraft:custom"] if "inspect" in stat or "open" in stat])
+    
+    def get_distance(self):
+        return round(sum([self.data["minecraft:custom"][stat] for stat in self.data["minecraft:custom"] if "one_cm" in stat])/100)
 
     def get_custom_stats(self):
         with open("custom_stats.json","r") as f:
@@ -68,7 +74,7 @@ class Player():
             unit=" "+custom_stat["unit"] if "unit" in custom_stat.keys() else ""
             output.append(custom_stat["name"]+": "+pretty_print(value)+unit)
 
-        return "Distance parcourue: {} blocs\nConteneurs ouverts: {}\nTemps de jeu moyen par session: {} min\n{}".format(pretty_print(round(sum([self.data["minecraft:custom"][stat] for stat in self.data["minecraft:custom"] if "one_cm" in stat])/100)),
-            pretty_print(sum([self.data["minecraft:custom"][stat] for stat in self.data["minecraft:custom"] if "inspect" in stat or "open" in stat])),
-            round(self.data["minecraft:custom"]["minecraft:play_one_minute"]/self.data["minecraft:custom"]["minecraft:leave_game"]/(20*60)),
+        return "Distance parcourue: {} blocs\nConteneurs ouverts: {}\nTemps de jeu moyen par session: {} min\n{}".format(pretty_print(self.get_distance()),
+            pretty_print(self.get_opened_containers()),
+            round(self.data["minecraft:custom"]["minecraft:play_time"]/self.data["minecraft:custom"]["minecraft:leave_game"]/(20*60)),
             "\n".join(output))
