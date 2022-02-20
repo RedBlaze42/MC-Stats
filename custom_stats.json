@@ -40,5 +40,11 @@
     {
         "name": "Musiques jouées",
         "id": "minecraft:play_record"
-    },{"name":"Temps depuis la dernière mort","id":"minecraft:time_since_death","divide_by":1200,"unit":"min"}
+    },
+    {
+        "name": "Temps depuis la dernière mort",
+        "id": "minecraft:time_since_death",
+        "divide_by": 1200,
+        "unit": "min"
+    }
 ]
